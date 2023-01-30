@@ -1,1 +1,38 @@
-/* Write your code here. */
+.navbar-section {
+  /* background-image: linear-gradient(135deg , #9796f0, #fbc7d4); */
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.204);
+  margin-bottom: 10%;
+  align-self: stretch;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+.logo-img {
+  width: 25px;
+}
+.logo-text {
+  font-weight: 500;
+  font-size: 1rem;
+}
+.scores-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.scores-container p {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .navbar-section {
+    margin-bottom: 5%;
+    padding: 1.5rem 5rem;
+  }
+}
