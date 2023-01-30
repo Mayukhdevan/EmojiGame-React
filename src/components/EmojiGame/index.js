@@ -1,17 +1,3 @@
-/* 
-Quick Tip 
-
-- Use the below function in the EmojiGame Component to shuffle the emojisList every time when an emoji is clicked.
-
-const shuffledEmojisList = () => {
-  const {emojisList} = this.props
-  return emojisList.sort(() => Math.random() - 0.5)
-}
-
-*/
-
-// Write your code here.
-
 import {Component} from 'react'
 import './index.css'
 import NavBar from '../NavBar'
@@ -19,36 +5,44 @@ import EmojiCard from '../EmojiCard'
 import WinOrLoseCard from '../WinOrLoseCard'
 
 class EmojiGame extends Component {
-  state = {score: 0, topScore: 0, emojiId: undefined, didWin: undefined}
+  state = {score: 0, topScore: 0, emojiIdList: [], didWin: undefined}
 
   updateScore = id =>
     this.setState(prevState => {
+      // On game case
       if (
-        prevState.emojiId === undefined ||
-        (prevState.emojiId !== id && prevState.score < 11)
+        prevState.emojiIdList.length === 0 ||
+        (!prevState.emojiIdList.includes(id) && prevState.score < 11)
       ) {
-        return {score: prevState.score + 1, emojiId: id}
-      }
-      if (prevState.emojiId === id) {
-        if (prevState.score > prevState.topScore) {
-          return {
-            score: 0,
-            topScore: prevState.score,
-            emojiId: undefined,
-            didWin: false,
-          }
+        return {
+          score: prevState.score + 1,
+          emojiIdList: [...prevState.emojiIdList, id],
         }
-        return {score: 0, emojiId: undefined, didWin: false}
+      } // Loosing case - 1
+      if (prevState.emojiIdList.includes(id)) {
+        // Loosing case - 2
+        return {didWin: false}
       }
+      //   Winning case
       return {
-        score: 0,
-        topScore: prevState.score + 1,
-        emojiId: undefined,
+        score: prevState.score + 1,
         didWin: true,
       }
     })
 
-  newGame = () => this.setState({didWin: undefined})
+  newGame = () =>
+    this.setState(prevState => {
+      if (prevState.score > prevState.topScore || prevState.score === 12) {
+        return {
+          topScore: prevState.score,
+          score: 0,
+          didWin: undefined,
+          emojiIdList: [],
+        }
+      }
+
+      return {score: 0, didWin: undefined, emojiIdList: []}
+    })
 
   render() {
     const {score, topScore, didWin} = this.state
@@ -71,7 +65,7 @@ class EmojiGame extends Component {
 
     return (
       <div className="bg-container">
-        <NavBar score={score} topScore={topScore} />
+        <NavBar score={score} topScore={topScore} result={didWin} />
         {didWin === undefined ? (
           gameBoard()
         ) : (
