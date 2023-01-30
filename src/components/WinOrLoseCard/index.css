@@ -1,1 +1,101 @@
-/* Write your code here. */
+.result-card {
+  background-color: rgb(255, 255, 255, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
+  width: 85%;
+  max-width: 450px;
+  animation: pop-up .5s cubic-bezier(0, 0, 0, 1.33);
+}
+@keyframes pop-up{
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.result-card-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.result-image {
+  width: 200px;
+  margin-bottom: 2rem;
+}
+.result-card-text-wrapper, .result-image {
+    opacity: 0;
+    animation: visible-in 1s ease-out 1s forwards;
+}
+@keyframes visible-in{
+    from {
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.result-text {
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+.score-type {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.score-points {
+  color: #6a59ff;
+  font-weight: 900;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.play-again-btn {
+  border: none;
+  padding: 1.2rem 1.5rem;
+  background-color: #ffce27;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #3d3d3d;
+  border-radius: 22px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .result-card {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 700px;
+  }
+  .result-image {
+    order: 1;
+    width: 300px;
+  }
+  .result-text {
+    font-size: 3rem;
+  }
+  .score-type {
+    font-size: 1.5rem;
+  }
+  .score-points {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .play-again-btn {
+    font-size: 0.8rem;
+    padding: 1rem 1.3rem;
+  }
+}
