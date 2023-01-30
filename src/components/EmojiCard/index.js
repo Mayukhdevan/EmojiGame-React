@@ -7,11 +7,11 @@ const EmojiCard = props => {
   const updateEmoji = () => updateScore(id)
 
   return (
-    <button type="button" className="emoji-button" onClick={updateEmoji}>
-      <li className="emoji-card">
+    <li className="emoji-card">
+      <button type="button" className="emoji-button" onClick={updateEmoji}>
         <img className="emoji-img" src={emojiUrl} alt={emojiName} />
-      </li>
-    </button>
+      </button>
+    </li>
   )
 }
 
